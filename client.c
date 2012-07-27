@@ -16,6 +16,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#include <time.h>
 #endif
 
 #ifdef CP_USE_SSL
@@ -416,6 +417,8 @@ cp_client *cp_client_create(char *host, int port)
 	}
 
 	client->fd = socket(PF_INET, SOCK_STREAM, 0);
+        setsockopt (client->fd, SOL_SOCKET, SO_RCVTIMEO, (const char *)&client->timeout, sizeof(int));
+
 	if (client->fd == -1)
 	{
 		cp_perror(CP_IO_ERROR, errno, "can\'t create socket");
@@ -592,6 +595,10 @@ int cp_client_connect(cp_client *client)
 	memset(&addr, 0, sizeof(struct sockaddr_in));
 	addr.sin_family = client->hostspec->h_addrtype;
 	addr.sin_port = htons(client->port);
+        if(0 != setsockopt (client->fd, SOL_SOCKET, SO_RCVTIMEO, (const void *)&client->timeout, sizeof(client->timeout)))
+                {
+                    return CP_INITIALIZATION_FAILURE;
+                }
 
 	while (!connected && retry--)
 	{
