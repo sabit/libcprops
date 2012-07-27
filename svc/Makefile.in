@@ -1,0 +1,72 @@
+# cpsvc - an http server - Makefile
+#
+# This is the Makefile for cpsvc. If it has the name "Makefile.in" then it is a
+# template for a Makefile;  to generate the actual Makefile, run "./configure"
+# in the cprops base directory. 
+#
+# Copyright (c) 2005-2007 by Ilan Aelion
+# iaelion@users.sourceforge.net
+# 
+# 2007-11-30 V 0.1.7 beta
+#
+###############################################
+
+top_builddir = @root_dir@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = $(DESTDIR)@bindir@
+libdir = $(DESTDIR)@libdir@
+incdir = $(DESTDIR)@includedir@/cprops
+mandir = $(DESTDIR)@mandir@
+datadir = @datarootdir@
+
+CC = @CC@
+CFLAGS = -D_REENTRANT -I $(top_builddir)/.. @CFLAGS@
+LDFLAGS = -L../.libs -L$(libdir) @LDFLAGS@
+LIBS = -lcprops @LIBS@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+
+MAKEDEPEND = @MAKEDEPEND@
+
+SVC_SRC = file.c cgi.c @cpsp_sources@
+SVC_HDR = $(SVC_SRC:.c=.h)
+SVC_OBJ = $(SVC_SRC:.c=.o) cpsvc.o
+
+DEPEND=$(MAKEDEPEND) $(CFLAGS)
+
+all: linkdir cpsvc
+
+linkdir:
+	@if ! test -e cprops ; then ln -s .. cprops ; fi
+
+cpsvc: $(SVC_OBJ)
+	$(CC) $(LDFLAGS) $(SVC_OBJ) -o $@ $(LIBS)
+
+%.o : %.c %.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: all clean install uninstall linkdir
+
+clean: 
+	rm -f $(SVC_OBJ) cpsvc core* *core vgcore* *.log
+
+install: all installdirs
+	@$(INSTALL) cpsvc $(bindir)
+	@$(INSTALL_DATA) mime.types $(bindir)
+
+installdirs:
+	$(SHELL) $(top_builddir)/mkinstalldirs $(bindir)
+
+uninstall:
+	rm -f $(bindir)/cpsvc
+	rm -f $(bindir)/mime.types
+
+$(SVC_OBJ): Makefile
+
+depend: $(SVC_SRC)
+	@$(DEPEND) $(SVC_SRC) > /dev/null 2>&1

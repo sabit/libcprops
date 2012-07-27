@@ -1,0 +1,233 @@
+/* config.h.in.  Generated from configure.in by autoheader.  */
+
+#ifndef _CP_CONFIG_H
+#define _CP_CONFIG_H
+
+/* no multiple values */
+#undef CP_HASHLIST_MUTLIPLE_VALUES
+
+/* no multiple values */
+#undef CP_HASHTABLE_MUTLIPLE_VALUES
+
+/* Define to 1 if you have the <dirent.h> header file. */
+#undef CP_HAS_DIRENT_H
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef CP_HAS_DLFCN_H
+
+/* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
+#undef CP_HAS_DOPRNT
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#undef CP_HAS_FCNTL_H
+
+/* Define to 1 if you have the `gethostname' function. */
+#undef CP_HAS_GETHOSTNAME
+
+/* Define to 1 if you have the 6-parameter `gethostbyname_r' function */
+#undef CP_HAS_GETHOSTBYNAME_R_6
+
+/* Define to 1 if you have the `gettimeofday' function. */
+#undef CP_HAS_GETTIMEOFDAY
+
+/* Define to 1 if you have the `read' function. */
+#undef CP_HAS_READ
+
+/* Define to 1 if you have the `write' function. */
+#undef CP_HAS_WRITE
+
+/* Define to 1 if you have the `inet_ntoa' function. */
+#undef CP_HAS_INET_NTOA
+
+/* Define to 1 if you have the `inet_ntop' function. */
+#undef CP_HAS_INET_NTOP
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef CP_HAS_INTTYPES_H
+
+/* Define to 1 if you have the `dl' library (-ldl). */
+#undef CP_HAS_LIBDL
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef CP_HAS_MEMORY_H
+
+/* Define to 1 if you have the `memset' function. */
+#undef CP_HAS_MEMSET
+
+/* Define to 1 if you have the <arpa/inet.h> header file. */
+#undef CP_HAS_ARPA_INET_H
+
+/* Define to 1 if you have the <netdb.h> header file. */
+#undef CP_HAS_NETDB_H
+
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#undef CP_HAS_NETINET_IN_H
+
+/* Define to 1 if you have the <pthread.h> header file. */
+#undef CP_HAS_PTHREAD_H
+
+/* Define to 1 if PTHREAD_MUTEX_RECURSIVE works */
+#undef CP_HAS_PTHREAD_MUTEX_RECURSIVE
+
+/* Define to 1 if PTHREAD_MUTEX_RECURSIVE doesn't work but 
+ * PTHREAD_MUTEX_RECURSIVE_NP does 
+ */
+#undef CP_HAS_PTHREAD_MUTEX_RECURSIVE_NP
+
+/* Define to 1 if you have the `regcomp' function. */
+#undef CP_HAS_REGCOMP
+
+/* Define to 1 if you have the <regex.h> header file. */
+#undef CP_HAS_REGEX_H
+
+/* Define to 1 if you have the `select' function. */
+#undef CP_HAS_SELECT
+
+/* Define to 1 if you have the `poll' function. */
+#undef CP_HAS_POLL
+
+/* Define to 1 if you have the `socket' function. */
+#undef CP_HAS_SOCKET
+
+/* Define to 1 if you have the <stdarg.h> header file. */
+#undef CP_HAS_STDARG_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef CP_HAS_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef CP_HAS_STDLIB_H
+
+/* Define to 1 if you have the `strlcat' function. */
+#undef CP_HAS_STRLCAT
+
+/* Define to 1 if you have the `strlcpy' function. */
+#undef CP_HAS_STRLCPY
+
+/* Define to 1 if you have the `strcasecmp' function. */
+#undef CP_HAS_STRCASECMP
+
+/* Define to 1 if you have the `strdup' function. */
+#undef CP_HAS_STRDUP
+
+/* Define to 1 if you have the `strftime' function. */
+#undef CP_HAS_STRFTIME
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef CP_HAS_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef CP_HAS_STRING_H
+
+/* Define to 1 if you have the `strndup' function. */
+#undef CP_HAS_STRNDUP
+
+/* Define to 1 if you have the `strstr' function. */
+#undef CP_HAS_STRSTR
+
+/* Define to 1 if you have the `strerror_r' function. */
+#undef CP_HAS_STRERROR_R
+
+/* Define to 1 if you have the `getopt' function. */
+#undef CP_HAS_GETOPT
+
+/* Define to 1 if you have the `getaddrinfo' function. */
+#undef CP_HAS_GETADDRINFO
+
+/* Define to 1 if you have the `addrinfo' struct. */
+#undef CP_HAS_ADDRINFO
+
+/* Define to 1 if you have the `getcwd' function. */
+#undef CP_HAS_GETCWD
+
+/* Define to 1 if you have the `gmtime_r' function. */
+#undef CP_HAS_GMTIME_R
+
+/* Define to 1 if you have the `localtime_r' function. */
+#undef CP_HAS_LOCALTIME_R
+
+/* Define to 1 if you have the `pthread_getunique_np' function. */
+#undef CP_HAS_PTHREAD_GETUNIQUE_NP
+
+/* Define to 1 if you have the `random' function. */
+#undef CP_HAS_RANDOM
+
+/* Define to 1 if you have the `srandom' function. */
+#undef CP_HAS_SRANDOM
+
+/* Define to 1 if you have the `stat' function. */
+#undef CP_HAS_STAT
+
+/* Define to 1 if you have the `strncasecmp' function. */
+#undef CP_HAS_STRNCASECMP
+
+/* Define to 1 if you have the `strptime' function. */
+#undef CP_HAS_STRPTIME
+
+/* Define to 1 if you have the <sys/select> header file. */
+#undef CP_HAS_SYS_SELECT_H
+
+/* Define to 1 if you have the `sigaction' function. */
+#undef CP_HAS_SIGACTION
+
+/* Define to 1 if you have the `snprintf' function. */
+#undef CP_HAS_SNPRINTF
+
+/* Define to 1 if you have the `vsprintf' function. */
+#undef CP_HAS_VSPRINTF
+
+/* Define to 1 if you have the `vsnprintf' function. */
+#undef CP_HAS_VSNPRINTF
+
+/* Define to 1 if you have the `getpagesize' function. */
+#undef CP_HAS_GETPAGESIZE
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef CP_HAS_DLFCN_H
+
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#undef CP_HAS_SYS_SOCKET_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef CP_HAS_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#undef CP_HAS_SYS_TIME_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef CP_HAS_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef CP_HAS_UNISTD_H
+
+/* Define to 1 if you have the `vprintf' function. */
+#undef CP_HAS_VPRINTF
+
+/* Define to 1 if supporting http cookies */
+#undef CP_USE_COOKIES
+
+/* Define to 1 if supporting cpsp */
+#undef CP_USE_CPSP
+
+/* Define to 1 if supporting http sessions */
+#undef CP_USE_HTTP_SESSIONS
+
+/* Define to 1 if compiling with OpenSSL support */
+#undef CP_USE_SSL
+
+/* Define to 1 if linking dbms libraries statically */
+#undef CP_DBMS_STATIC
+
+/* Define to 1 if long long is supported */
+#undef CP_HAS_LONG_LONG
+
+/* Define to 1 if variadic macros are supported */
+#undef CP_HAS_VARIADIC_MACROS
+
+/* Define to 1 if hardware byte order is little endian */
+#undef CP_BYTE_ORDER_LITTLE_ENDIAN
+
+/* Define to 1 if you have the `__builtin_clz` function */
+#undef CP_HAS___BUILTIN_CLZ
+
+#endif /* _CP_CONFIG_H */

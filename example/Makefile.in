@@ -1,0 +1,76 @@
+# cprops examples - Makefile
+#
+# This is a Makefile for cprops examples. If it has the name "Makefile.in" then
+# it is a template for a Makefile;  to generate the actual Makefile, run 
+# "./configure" in the cprops base directory. 
+#
+# Copyright (c) 2005-2007 by Ilan Aelion
+# iaelion@users.sourceforge.net
+# 
+# 2007-30-11 V 0.1.7 
+#
+###############################################
+
+srcdir=@srcdir@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+
+libdir=$(DESTDIR)@libdir@
+incdir=$(DESTDIR)@includedir@/cprops
+
+CC = @CC@
+CFLAGS = -D_REENTRANT -I $(incdir) -I . @CFLAGS@
+LDFLAGS = -L../.libs -L$(libdir) @LDFLAGS@
+LIBS = -lcprops @LIBS@
+
+DBEXAMPLES = @db_examples@
+DBEXAMPLES_OBJ = $(DBEXAMPLES:.c=.o)
+DBEXAMPLES_EXE = $(DBEXAMPLES:.c=)
+DBLDFLAGS = @PGSQL_LDFLAGS@ @MYSQL_LDFLAGS@
+DBLIBS = @PGSQL_LIBS@ @MYSQL_LIBS@
+
+EXAMPLE_SRC = test_avl.c test_avl_multi.c test_client.c test_hashlist.c \
+			  test_hashlist_iterator.c test_hashtable.c test_hashtable2.c \
+			  test_httpasync.c test_httpclient.c test_list.c \
+			  test_list_iterator.c test_priority_list.c test_proxy.c \
+			  test_str.c test_trie.c test_trie2.c test_vector.c \
+			  test_rb.c test_splay.c wf.c test_heap.c @ssl_example@ \
+			  test_mempool.c test_sorted_hash.c test_narytree.c \
+			  test_multimap.c test_reindex.c test_reindex_unique.c \
+			  test_wtab.c test_wtrie.c test_bstr.c test_rtrie.c
+
+EXAMPLE_OBJ = $(EXAMPLE_SRC:.c=.o) 
+EXAMPLE_EXE = $(EXAMPLE_SRC:.c=)
+
+MAKEDEPEND=@MAKEDEPEND@
+
+DEPEND=$(MAKEDEPEND) $(CFLAGS)
+
+all: linkdir examples db_examples
+
+linkdir:
+	@if ! test -e cprops ; then ln -s .. cprops ; fi
+
+examples: $(EXAMPLE_OBJ)
+
+.c.o: 
+	$(CC) $(CFLAGS) -c $(@:.o=.c) -o $@
+	$(CC) $(LDFLAGS) $@ -o $(@:.o=) $(LIBS)
+
+db_examples: $(DBEXAMPLES_EXE)
+
+$(DBEXAMPLES_EXE): $(DBEXAMPLES_OBJ)
+	@echo DBSTUFF
+	$(CC) $(CFLAGS) -c $(@:=.c) -o $(@:=.o)
+	$(CC) $(LDFLAGS) $(DBLDFLAGS) $(@:=.o) -o $@ $(LIBS) $(DBLIBS)
+
+.PHONY: all clean linkdir
+
+clean: 
+	rm -f $(EXAMPLE_OBJ) $(EXAMPLE_OBJ:.o=) $(DBEXAMPLES_OBJ) \
+	   $(DBEXAMPLES_EXE) core* *core vgcore* *.log
+
+$(EXAMPLE_OBJ): Makefile
+
+depend: linkdir $(EXAMPLE_SRC)
+	@$(DEPEND) $(EXAMPLE_SRC) > /dev/null 2>&1

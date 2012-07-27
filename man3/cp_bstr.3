@@ -1,0 +1,129 @@
+.TH cp_bstr 3 "NOVEMBER 2011" libcprops.0.1.9 "libcprops - cp_bstr"
+.SH NAME
+cp_bstr \- a bit string implementation
+
+.SH INTERFACE
+the following is a summary of functions provided by \fI<cprops/bstr.h>\fP.
+
+.BI "cp_bstr *cp_bstr_create(int " length ", unsigned char *" bits ");
+.br
+.BI "int cp_bstr_destroy(cp_bstr *" seq ");
+.br
+.BI "int cp_bstr_dup(cp_bstr *" seq ");
+.br
+.BI "cp_bstr *cp_bstr_cpy(cp_bstr *" dst ", cp_bstr *" src ");
+.br
+.BI "cp_bstr *cp_bstr_cat(cp_bstr *" head ", cp_bstr *" tail ");
+.br
+.BI "int cp_bstr_shift_left(cp_bstr *" seq ", int " count ");
+.br
+.BI "int cp_bstr_cmp(cp_bstr *" a ", cp_bstr *" b ", int *" pos ");
+.br
+.BI "char *cp_bstr_to_string(cp_bstr *" seq ");
+.br
+.BI "cp_trie *cstr_to_bstr(char *" str ");
+.br
+.BI "void cp_bstr_dump(cp_bstr *" seq ");
+.br
+
+.SH DESCRIPTION
+.B cp_bstr
+is an arbitrary length bit string implementation, with functions to perform
+several operations.
+.sp
+.B cp_bstr_create
+creates a new bit string with initial capacity large enough to store
+.I length
+bits. If the
+.I bits
+parameter is not NULL the first 
+.I length
+bits are copied into the new cp_bstr.
+.sp
+.B cstr_to_bstr 
+initializes a cp_bstr from a string that looks like "1010101" - intended as a
+convenience function for debugging
+.sp
+.B cp_bstr_destroy
+unallocates the memory associated with a cp_bstr.
+.sp
+.B cp_bstr_dup
+creates a copy of the source cp_bstr.
+.sp
+.B cp_bstr_cpy
+copies the contents of 
+.I dst
+to 
+.I src
+extending the memory allocated for 
+.I dst
+in the process if necessary.
+.sp
+.B cp_bstr_cat
+concatenates the bits in
+.I tail
+onto 
+.I head
+extending the memory allocated for 
+.I head
+in the process if necessary.
+.sp
+.B cp_bstr_shift_left
+shifts bits left by the specified count, resulting in a shorter bit
+sequence. 
+.sp
+.B cp_bstr_cmp
+compares bit sequences
+.I a
+and 
+.I b
+with strcmp semantics. If 
+.I pos
+is not null it is set to the index of the first differing bit. If the
+sequences are identical to the length they are defined, and pos is not null,
+it is set to the length of the shorter sequence - e.g. 010 and 0101 are
+identical to the third bit, hence 
+.I *pos
+is set to 3.
+.sp
+.B cp_bstr_dump
+print a message with the number of bits and the bit values in human-readable
+form to stdout
+.sp
+.B cp_bstr_to_string
+returns a newly-allocated character string containing the bit values in human-
+readable form.
+.SH RETURN VALUE
+.B cp_bstr_create
+returns a new cp_bstr structure or NULL if memory allocation failed.
+.sp
+.B cp_bstr_dup
+returns a duplicate of the source cp_bstr structure or NULL if memory
+allocation failed.
+.sp
+.B cp_bstr_cpy
+returns a pointer to the destination bit string structure or NULL if the
+source sequence was longer than the destination sequence and memory allocation
+failed.
+.sp
+.B cp_bstr_cat
+returns a pointer to the destination bit string structure or NULL if memory
+allocation failed.
+.sp
+.B cp_bstr_shift_left
+returns the new length of the bit string.
+.sp
+.B cp_bstr_cmp
+returns > 0 if 
+.I a
+>
+.I b
+, < 0 if
+.I a
+<
+.I b
+or 0 if
+.I a
+==
+.I b
+.sp
